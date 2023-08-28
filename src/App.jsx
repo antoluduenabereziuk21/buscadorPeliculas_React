@@ -2,12 +2,8 @@ import "./App.css";
 import { useMovies } from "./Hooks/useMovies";
 import { Movies } from "./components/Movies";
 
-
-
 function App() {
-  
-  const {movies : mappedMovies} = useMovies();
- 
+  const { movies: mappedMovies } = useMovies();
 
   return (
     <div className="page">
@@ -19,7 +15,7 @@ function App() {
         </form>
       </header>
       <main>
-        <Movies movies={mappedMovies}/>
+        <Movies movies={mappedMovies} />
       </main>
     </div>
   );

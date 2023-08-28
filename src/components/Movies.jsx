@@ -1,8 +1,8 @@
 /**MALA Practica
  * ListMovies Esta atado ala api y esta en la parte de
  * nuestra UI ,muy introducido en nuestra aplicacion
- * 
- * Por lo cual mapearemos la respuesta , para no usar el 
+ *
+ * Por lo cual mapearemos la respuesta , para no usar el
  * contrato de la api, y seran estos mapeos los que recibira
  * ListMovies
  */
@@ -24,12 +24,7 @@ function NoMoviesResults() {
   return <p>No se encontro resultados en la busqueda</p>;
 }
 
-export function Movies({movies}){
-
-    const hasMovies = movies?.length > 0;
-    return(
-        hasMovies 
-            ? <ListMovies movies={movies} /> 
-            : <NoMoviesResults />
-    )
+export function Movies({ movies }) {
+  const hasMovies = movies?.length > 0;
+  return hasMovies ? <ListMovies movies={movies} /> : <NoMoviesResults />;
 }
