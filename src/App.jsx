@@ -11,8 +11,33 @@ function App() {
   const hasMovies = movies?.length > 0;
   
   //para luego en el main renderizar mediante
-  //renderizado condicional
+  //renderizado condicional, para luego llevarlo a un componente
+/*
 
+Esto resulta una mala practica, porque deberia ser un componente
+Cualquier funcion que renderize algo debe ser un Componente
+
+  const renderMovies= ()=>{
+      return(
+        <ul>
+            {movies.map((movie) => (
+              <li key={movie.imdbID}>
+                <h3>{movie.Title}</h3>
+                <p>{movie.Year}</p>
+                <img src={movie.Poster} alt={movie.Title} />
+              </li>
+            ))}
+          </ul>
+      )
+
+  }
+
+  const renderNoResults = ()=>{
+    return(
+      <p>No se encontro resultados en la busqueda</p>
+    )
+  }
+*/
   return (
     <div className="page">
       <header>
@@ -23,19 +48,9 @@ function App() {
         </form>
       </header>
       <main>
-        {hasMovies ? (
-          <ul>
-            {movies.map((movie) => (
-              <li key={movie.imdbID}>
-                <h3>{movie.Title}</h3>
-                <p>{movie.Year}</p>
-                <img src={movie.Poster} alt={movie.Title} />
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No se encontro resultados en la busqueda</p>
-        )}
+        {hasMovies 
+        ? renderMovies() 
+        : renderNoResults()}
       </main>
     </div>
   );
