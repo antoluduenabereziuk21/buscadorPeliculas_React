@@ -7,9 +7,9 @@ import { Movies } from "./components/Movies";
 
 
 function App() {
-  const { movies: mappedMovies } = useMovies();
-
+  
   const { search,updateSearch,error}= useSearch();
+  const { movies: mappedMovies ,getMovies } = useMovies({search});
  
 /*
   const counter = useRef(0);//valor que persiste entre renders
@@ -18,7 +18,7 @@ function App() {
 */
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ search });
+    getMovies();
   };
 
   const handleChange = (e) => {
