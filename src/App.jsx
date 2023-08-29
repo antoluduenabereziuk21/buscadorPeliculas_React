@@ -17,20 +17,22 @@ function App() {
   const inputRef = useRef();
   //cuando se haga click se llamara al handle 
   //y sacaremos el valor de la referencia
-  const handleClick = (e)=>{
+  const handleSubmit = (e)=>{
     e.preventDefault();
     const value = inputRef.current.value;
     console.log(value);
   };
+  //pero utilizaremos el onSubmit en el form que tiene
+  //mayores ventajas
 
 
   return (
     <div className="page">
       <header>
         <h1>Buscador de péliculas</h1>
-        <form className="form">
+        <form className="form" onSubmit={handleSubmit}>
           <input ref={inputRef} placeholder="Avengers, Star Wars, The Matrix" />
-          <button onClick={handleClick} type="submit">Buscar</button>
+          <button  type="submit">Buscar</button>
         </form>
       </header>
       <main>
