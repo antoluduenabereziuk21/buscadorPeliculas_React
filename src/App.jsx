@@ -56,7 +56,11 @@ function App() {
       <header>
         <h1>Buscador de péliculas</h1>
         <form className="form" onSubmit={handleSubmit}>
-          <input onChange={handleChange} value={query} name="query" placeholder="Avengers, Star Wars, The Matrix" />
+          <input style={{
+            border:'1px solid transparent',
+            borderColor: error? 'red' : 'transparent'
+            }}
+            onChange={handleChange} value={query} name="query" placeholder="Avengers, Star Wars, The Matrix" />
           <button type="submit">Buscar</button>
         </form>
         {error && <p style={{ color: 'red'}}>{error}</p>}
