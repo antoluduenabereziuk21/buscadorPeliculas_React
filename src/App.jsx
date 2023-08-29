@@ -2,11 +2,14 @@ import { useState } from "react";
 import "./App.css";
 import { useMovies } from "./Hooks/useMovies";
 import { Movies } from "./components/Movies";
+import { useEffect } from "react";
 
 function App() {
   const { movies: mappedMovies } = useMovies();
   
   const [query, setQuery] = useState('');
+  const [error,setError] = useState(null);
+
 
   console.log('render');
   /**
@@ -24,8 +27,27 @@ function App() {
   };
 
   const handleChange= (e)=>{
+    e.preventDefault();
     setQuery(e.target.value);
-  }  
+  }
+  useEffect(() => {
+
+    if(query === ''){
+      setError('No se puede buscar una pelicula vacia')
+      return
+    }
+    if(query.match(/^\d+$/)){
+      setError('No se puede buscar con un numero')
+      return
+    }
+    if (query.length < 3) {
+      setError('La Busqueda debe tener al menos 3 caracteres')
+      return
+    }
+    setError(null)
+  
+  }, [query])
+  
 
   return (
     <div className="page">
@@ -35,6 +57,7 @@ function App() {
           <input onChange={handleChange} value={query} name="query" placeholder="Avengers, Star Wars, The Matrix" />
           <button type="submit">Buscar</button>
         </form>
+        {error && <p style={{ color: 'red'}}>{error}</p>}
       </header>
       <main>
         <Movies movies={mappedMovies} />
