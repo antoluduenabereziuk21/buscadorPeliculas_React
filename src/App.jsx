@@ -27,7 +27,9 @@ function App() {
   };
 
   const handleChange= (e)=>{
-    e.preventDefault();
+    //con esto evitamos que empice con espacio vacio
+    const newQuery = e.target.value;
+    if (newQuery.startsWith(' '))return
     setQuery(e.target.value);
   }
   useEffect(() => {
