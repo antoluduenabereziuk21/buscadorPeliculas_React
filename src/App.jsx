@@ -9,6 +9,8 @@ function App() {
  * Este tipo de recuperacionde informacion de los inputs
  *  se conoce como no controlada , es la forma mas sencilla
  * y mas optima
+ * 
+ * //sot para manejar validacionde formularios
  */
   const handleSubmit = (e) => {
 
