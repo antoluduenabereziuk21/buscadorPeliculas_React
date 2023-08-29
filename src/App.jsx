@@ -1,44 +1,33 @@
 import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import { useMovies } from "./Hooks/useMovies";
+import { useSearch } from "./Hooks/useSearch";
 import { Movies } from "./components/Movies";
+
+
 
 function App() {
   const { movies: mappedMovies } = useMovies();
 
-  const [query, setQuery] = useState("");
-  const [error, setError] = useState(null);
-
-  const counter = useRef(0);
+  const { search,updateSearch,error}= useSearch();
+ 
+/*
+  const counter = useRef(0);//valor que persiste entre renders
   counter.current++;
   console.log(counter.current);
-
+*/
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ query });
+    console.log({ search });
   };
 
   const handleChange = (e) => {
     //con esto evitamos que empice con espacio vacio
     const newQuery = e.target.value;
     if (newQuery.startsWith(" ")) return;
-    setQuery(e.target.value);
+    updateSearch(e.target.value);
   };
-  useEffect(() => {
-    if (query === "") {
-      setError("No se puede buscar una pelicula vacia");
-      return;
-    }
-    if (query.match(/^\d+$/)) {
-      setError("No se puede buscar con un numero");
-      return;
-    }
-    if (query.length < 3) {
-      setError("La Busqueda debe tener al menos 3 caracteres");
-      return;
-    }
-    setError(null);
-  }, [query]);
+  
 
   return (
     <div className="page">
@@ -51,7 +40,7 @@ function App() {
               borderColor: error ? "red" : "transparent",
             }}
             onChange={handleChange}
-            value={query}
+            value={search}
             name="query"
             placeholder="Avengers, Star Wars, The Matrix"
           />
