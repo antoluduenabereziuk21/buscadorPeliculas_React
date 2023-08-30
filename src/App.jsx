@@ -9,7 +9,7 @@ import { Movies } from "./components/Movies";
 function App() {
   
   const { search,updateSearch,error}= useSearch();
-  const { movies: mappedMovies ,getMovies } = useMovies({search});
+  const { movies,loading,getMovies } = useMovies({search});
  
 /*
   const counter = useRef(0);//valor que persiste entre renders
@@ -48,8 +48,12 @@ function App() {
         </form>
         {error && <p style={{ color: "red" }}>{error}</p>}
       </header>
-      <main>
-        <Movies movies={mappedMovies} />
+      <main >
+        {
+          loading ? <p className="loader">Cargando</p>
+                  :<Movies movies={movies} />
+        }
+        
       </main>
     </div>
   );
