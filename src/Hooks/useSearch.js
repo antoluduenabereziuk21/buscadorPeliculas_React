@@ -9,6 +9,7 @@ export function useSearch() {
     /*Con el uso del useRef del input controlamos si es el primer uso 
     para que no se renderize de entrada el error
     */
+  
     if (isFirstInput.current) {
       isFirstInput.current = search === "";
       return;
