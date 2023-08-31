@@ -7,9 +7,10 @@ import { Movies } from "./components/Movies";
 
 
 function App() {
-  
+  //coneste sort ordenaremos las peliculas por año
+  const [sort, setSort] = useState(false)
   const { search,updateSearch,error}= useSearch();
-  const { movies,loading,getMovies } = useMovies({search});
+  const { movies,loading,getMovies } = useMovies({search,sort});
  
 /*
   const counter = useRef(0);//valor que persiste entre renders
@@ -27,6 +28,10 @@ function App() {
     if (newQuery.startsWith(" ")) return;
     updateSearch(e.target.value);
   };
+
+  const handleSort = () => {
+    setSort(!sort)
+  }
   
 
   return (
@@ -34,6 +39,7 @@ function App() {
       <header>
         <h1>Buscador de péliculas</h1>
         <form className="form" onSubmit={handleSubmit}>
+          
           <input
             style={{
               border: "1px solid transparent",
@@ -45,6 +51,9 @@ function App() {
             placeholder="Avengers, Star Wars, The Matrix"
           />
           <button type="submit">Buscar</button>
+          <br />
+          <label htmlFor="">Ordenar Alfabeticamente</label>
+          <input type="checkbox" onChange={handleSort} checked={sort}/>
         </form>
         {error && <p style={{ color: "red" }}>{error}</p>}
       </header>
