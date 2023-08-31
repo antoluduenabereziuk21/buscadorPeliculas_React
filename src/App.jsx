@@ -32,6 +32,13 @@ function App() {
   const handleSort = () => {
     setSort(!sort)
   }
+
+  useEffect(() => {
+    //solamete para ver que getMovies se crea y se destruye
+    //como estamos stricMode, lo eliminaremos del main.jsx para que no se salga 2veces
+    console.log("new get movies received")
+
+  },[getMovies]);
   
 
   return (
