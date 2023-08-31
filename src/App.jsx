@@ -3,20 +3,32 @@ import "./App.css";
 import { useMovies } from "./Hooks/useMovies";
 import { useSearch } from "./Hooks/useSearch";
 import { Movies } from "./components/Movies";
+import debounce from "just-debounce-it";
+import { useCallback } from "react";
 
 
 
 function App() {
+
+  
   //coneste sort ordenaremos las peliculas por año
   const [sort, setSort] = useState(false)
   const { search,updateSearch,error}= useSearch();
   const { movies,loading,getMovies } = useMovies({search,sort});
- 
-/*
+  
+  /*
   const counter = useRef(0);//valor que persiste entre renders
   counter.current++;
   console.log(counter.current);
-*/
+  */
+  
+  const debouncedGetMovies = useCallback(
+    debounce(search =>{
+    console.log("search",search)
+    getMovies({search})
+  },300),
+  [getMovies]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     getMovies({search});
@@ -29,7 +41,8 @@ function App() {
     // updateSearch(e.target.value);
     const newSearch = e.target.value;
     updateSearch(newSearch);
-    getMovies({search:newSearch});
+   // getMovies({search:newSearch});
+   debouncedGetMovies(newSearch);
   };
 
   const handleSort = () => {
@@ -68,7 +81,7 @@ function App() {
       </header>
       <main >
         {
-          loading ? <p className="loader">Cargando</p>
+          loading ? <p className="loader"></p>
                   :<Movies movies={movies} />
         }
         
