@@ -11,9 +11,7 @@ export function useSearch() {
   
 
   useEffect(() => {
-    /*Con el uso del useRef del input controlamos si es el primer uso 
-    para que no se renderize de entrada el error
-    */
+   
   
    if (isFirstInput.current) {
       
