@@ -24,9 +24,12 @@ function App() {
 
   const handleChange = (e) => {
     //con esto evitamos que empice con espacio vacio
-    const newQuery = e.target.value;
-    if (newQuery.startsWith(" ")) return;
-    updateSearch(e.target.value);
+    // const newQuery = e.target.value;
+    // if (newQuery.startsWith(" ")) return;
+    // updateSearch(e.target.value);
+    const newSearch = e.target.value;
+    updateSearch(newSearch);
+    getMovies({search:newSearch});
   };
 
   const handleSort = () => {
