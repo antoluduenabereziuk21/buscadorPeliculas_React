@@ -20,7 +20,7 @@ export function useSearch() {
       isFirstInput.current = search === "";
       return;
     }
-    console.log("no llego aca");
+    
     if (search === "") {
       setError("No se puede buscar una pelicula vacia");
       return;
